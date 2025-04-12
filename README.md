@@ -1,6 +1,9 @@
 # My Nuxt App
 
-This is a Nuxt.js application that serves as a starting point for building a modern web application.
+This is a Nuxt.js application for keeping trakc of groceries
+
+## Figma Prototype
+[View the Figma Design] (https://www.figma.com/design/P6tpJqtzmD9fxIAPeRmJ8n/Expires?node-id=0-1&t=29RsOrLsYaTaV8hm-1)
 
 ## Project Structure
 
