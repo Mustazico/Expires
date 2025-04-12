@@ -1,6 +1,6 @@
 # My Nuxt App
 
-This is a Nuxt.js application for keeping trakc of groceries
+This is a Nuxt.js application for keeping track of groceries
 
 ## Figma Prototype
 [View the Figma Design] (https://www.figma.com/design/P6tpJqtzmD9fxIAPeRmJ8n/Expires?node-id=0-1&t=29RsOrLsYaTaV8hm-1)

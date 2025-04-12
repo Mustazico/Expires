@@ -2,9 +2,11 @@
     <div class="header">
     <h1 class="title">Expires</h1>
     <div class="links">
+        <nuxt-link to="/">Hjem</nuxt-link>
         <nuxt-link to="/oppskrifter">Oppskrifter</nuxt-link>
         <nuxt-link to="/varer">Varer</nuxt-link>
         <nuxt-link to="/handlekurv">Handlekurv</nuxt-link>
+        <nuxt-link to="/login">Login</nuxt-link>
     </div>
     </div>
 </template>
