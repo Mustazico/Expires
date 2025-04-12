@@ -2,7 +2,7 @@
     <div class="varer-container">
         <div class="overskrift">
             <h1>Vareregister</h1>
-            <h2>Her er en oversikt over dine varer. Du kan velge å endre antall varer av en varetype. Du kan også endre bilde og navn på en vare, eller velge å slette en varetype helt fra din beholdning.</h2>
+            <h2>Her er en oversikt over dine varer. Du kan velge å endre antall varer av en varetype.</h2>
         </div>
         <ul class="varer-liste">
             <li v-for="vare in varer" :key="vare.id" class="vare-kort">
@@ -10,12 +10,23 @@
                 <div class="vare-detaljer">
                     <h2>{{ vare.navn }}</h2>
                     <p class="antall">Antall: {{ vare.antall }}</p>
-                    <p class="endre-antall">Endre antall</p>
+                    <p class="endre-antall" @click="toggleDetaljer(vare.id)">Fjern varer</p>
+                    <p class="endre-antall">Legg til vare</p>
                     <div class="knapper">
-                        <button class="btn">Rediger</button>
-                        <button class="btn">Slett</button>
+                    <p class="btn">Rediger</p>
                     </div>
                 </div>
+
+                <!-- Viser detaljene kun hvis dette kortet er valgt -->
+                <ul v-if="valgtVare === vare.id" class="detaljer-liste">
+                    <li v-for="detalj in vare.detaljer" :key="detalj.id" class="vare-kort">
+                        <div class="vare-detaljer">
+                            <h2>{{ detalj.navn }}</h2>
+                            <p>Utløpsdato: {{ detalj.utløpsdato }}</p>
+                            <p class="button">Fjern vare</p>
+                        </div>
+                    </li>
+                </ul>
             </li>
         </ul>
     </div>
@@ -26,18 +37,105 @@ export default {
     data() {
         return {
             varer: [
-                { id: 1, navn: "Avocado", bilde: "https://via.placeholder.com/80", antall: 10 },
-                { id: 2, navn: "Tomat", bilde: "https://via.placeholder.com/80", antall: 5 },
-                { id: 3, navn: "Agurk", bilde: "https://via.placeholder.com/80", antall: 8 },
-                { id: 4, navn: "Løk", bilde: "https://via.placeholder.com/80", antall: 12 },
-                { id: 5, navn: "Paprika", bilde: "https://via.placeholder.com/80", antall: 7 },
-                { id: 6, navn: "Salat", bilde: "https://via.placeholder.com/80", antall: 4 },
-                { id: 7, navn: "Brokkoli", bilde: "https://via.placeholder.com/80", antall: 6 },
-                { id: 8, navn: "Blomkål", bilde: "https://via.placeholder.com/80", antall: 3 },
-                { id: 9, navn: "Gulrot", bilde: "https://via.placeholder.com/80", antall: 15 },
-                { id: 10, navn: "Potet", bilde: "https://via.placeholder.com/80", antall: 20 }
-            ]
+    {
+        id: 1,
+        navn: "Avocado",
+        bilde: "https://via.placeholder.com/80",
+        antall: 10,
+        detaljer: [
+            { id: 101, navn: "Avocado", utløpsdato: "2025-04-20" },
+            { id: 102, navn: "Avocado", utløpsdato: "2025-04-22" }
+        ]
+    },
+    {
+        id: 2,
+        navn: "Tomat",
+        bilde: "https://via.placeholder.com/80",
+        antall: 5,
+        detaljer: [
+            { id: 201, navn: "Tomat", utløpsdato: "2025-04-18" },
+            { id: 202, navn: "Tomat", utløpsdato: "2025-04-25" }
+        ]
+    },
+    {
+        id: 3,
+        navn: "Agurk",
+        bilde: "https://via.placeholder.com/80",
+        antall: 2,
+        detaljer: [
+            { id: 301, navn: "Agurk", utløpsdato: "2025-04-15" },
+            { id: 302, navn: "Agurk", utløpsdato: "2025-04-20" }
+        ]
+    },
+    {
+        id: 4,
+        navn: "Løk",
+        bilde: "https://via.placeholder.com/80",
+        antall: 2,
+        detaljer: [
+            { id: 401, navn: "Løk", utløpsdato: "2025-04-10" },
+            { id: 402, navn: "Løk", utløpsdato: "2025-04-12" }
+        ]
+    },
+    {
+        id: 5,
+        navn: "Paprika",
+        bilde: "https://via.placeholder.com/80",
+        antall: 2,
+        detaljer: [
+            { id: 501, navn: "Paprika", utløpsdato: "2025-04-18" },
+            { id: 502, navn: "Paprika", utløpsdato: "2025-04-22" }
+        ]
+    },
+    {
+        id: 6,
+        navn: "Salat",
+        bilde: "https://via.placeholder.com/80",
+        antall: 2,
+        detaljer: [
+            { id: 601, navn: "Salat", utløpsdato: "2025-04-14" },
+            { id: 602, navn: "Salat", utløpsdato: "2025-04-16" }
+        ]
+    },
+    {
+        id: 7,
+        navn: "Brokkoli",
+        bilde: "https://via.placeholder.com/80",
+        antall: 2,
+        detaljer: [
+            { id: 701, navn: "Brokkoli", utløpsdato: "2025-04-19" },
+            { id: 702, navn: "Brokkoli", utløpsdato: "2025-04-23" }
+        ]
+    },
+    {
+        id: 8,
+        navn: "Blomkål",
+        bilde: "https://via.placeholder.com/80",
+        antall: 2,
+        detaljer: [
+            { id: 801, navn: "Blomkål", utløpsdato: "2025-04-17" },
+            { id: 802, navn: "Blomkål", utløpsdato: "2025-04-21" }
+        ]
+    },
+    {
+        id: 9,
+        navn: "Gulrot",
+        bilde: "https://via.placeholder.com/80",
+        antall: 2,
+        detaljer: [
+            { id: 901, navn: "Gulrot", utløpsdato: "2025-04-13" },
+            { id: 902, navn: "Gulrot", utløpsdato: "2025-04-15" }
+        ]
+    }
+],
+            valgtVare: null // Holder styr på hvilket kort som er "åpent"
         };
+    },
+    methods: {
+        toggleDetaljer(vareId) {
+            // Hvis det samme kortet klikkes igjen, lukk det
+            this.valgtVare = this.valgtVare === vareId ? null : vareId;
+        }
     }
 };
 </script>
@@ -119,5 +217,43 @@ export default {
 
 .btn:hover {
     background-color: #0056b3;
+}
+
+.detaljer-liste {
+    display: flex;
+    flex-direction: column; /* Plasser detaljekortene vertikalt */
+    align-items: center; /* Sentrer detaljekortene horisontalt */
+    gap: 10px; /* Avstand mellom detaljekortene */
+    margin-top: 20px; /* Avstand mellom hovedkortet og detaljekortene */
+    width: 100%; /* Sørg for at listen strekker seg over hele bredden */
+}
+
+.detaljer-liste .vare-kort {
+    width: 500px; /* Samme bredde som hovedkortet */
+    margin: 0 auto; /* Sentrer kortene horisontalt */
+    display: flex;
+    align-items: center;
+    border: 1px solid rgb(62, 62, 62);
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: rgb(255, 255, 255);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.detaljer-liste .vare-kort:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.button {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: rgb(200, 50, 50);
+    cursor: pointer;
+    text-decoration: underline;
+}
+.button:hover {
+    color: rgb(150, 30, 30);
 }
 </style>
