@@ -1,4 +1,8 @@
 export default {
+  server: {
+    host: '127.0.0.1', // Default: localhost
+    port: 3000         // Default: 3000
+},
   head: {
     title: 'My Nuxt App',
     meta: [
